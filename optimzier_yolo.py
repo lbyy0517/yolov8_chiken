@@ -80,36 +80,6 @@ class PSO:
         
         return self.global_best_position, self.global_best_fitness
 
-class SimpleNN(nn.Module):
-    """简单的神经网络模型"""
-    def __init__(self, input_dim, hidden_dims, output_dim, dropout_rate=0.2, activation='relu'):
-        super(SimpleNN, self).__init__()
-        
-        layers = []
-        prev_dim = input_dim
-        
-        # 隐藏层
-        for hidden_dim in hidden_dims:
-            layers.append(nn.Linear(prev_dim, hidden_dim))
-            
-            if activation == 'relu':
-                layers.append(nn.ReLU())
-            elif activation == 'tanh':
-                layers.append(nn.Tanh())
-            elif activation == 'sigmoid':
-                layers.append(nn.Sigmoid())
-            
-            layers.append(nn.Dropout(dropout_rate))
-            prev_dim = hidden_dim
-        
-        # 输出层
-        layers.append(nn.Linear(prev_dim, output_dim))
-        
-        self.network = nn.Sequential(*layers)
-    
-    def forward(self, x):
-        return self.network(x)
-
 class HyperparameterOptimizer:
     """超参数优化器"""
     def __init__(self, X_train, X_val, y_train, y_val):
@@ -284,3 +254,4 @@ class HyperparameterOptimizer:
         plt.show()
         
         return best_params, best_fitness
+
