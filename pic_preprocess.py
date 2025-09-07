@@ -120,21 +120,3 @@ class VideoPreprocessor:
         # 步骤2: 图像预处理
         if extracted_files:
             self.process_images(extracted_files, noise_levels, exposure_factors)
-
-if __name__ == "__main__":
-    # 方法1: 直接在代码中使用
-    preprocessor = VideoPreprocessor(
-        video_path="C:/Users/zemyee/Desktop/test.mp4",
-        output_dir="C:/Users/zemyee/Desktop/test",
-        frame_interval=30
-        )
-    preprocessor.run_full_pipeline()
-    
-
-"""
-输出文件命名规则:
-- 原始帧: frame_000001_t1.23s.jpg
-- 噪声版本: frame_000001_t1.23s_noise25.jpg  
-- 曝光版本: frame_000001_t1.23s_exp1.2.jpg
-- 组合版本: frame_000001_t1.23s_noise25_exp1.2.jpg
-"""
