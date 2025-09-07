@@ -147,14 +147,6 @@ class HyperparameterOptimizer:
             hidden_dims = [params['hidden_size']] * params['num_layers']
             output_dim = len(torch.unique(self.y_train))
             
-            model = SimpleNN(
-                input_dim=input_dim,
-                hidden_dims=hidden_dims,
-                output_dim=output_dim,
-                dropout_rate=params['dropout_rate'],
-                activation=params['activation']
-            )
-            
             # 创建优化器
             if params['optimizer'] == 'adam':
                 optimizer = optim.Adam(model.parameters(), 
@@ -254,4 +246,5 @@ class HyperparameterOptimizer:
         plt.show()
         
         return best_params, best_fitness
+
 
