@@ -11,15 +11,16 @@ class VideoPreprocessor:
         self.video_path = video_path
         self.output_dir = Path(output_dir)
         self.frame_interval = frame_interval
-        
+        input_video_path = 'D:/yolov8data/chikendata.mp4' 
+        output_video_path = 'D:/yolov8data/data10.mp4'
         # 创建输出目录
         self.output_dir.mkdir(parents=True, exist_ok=True)
         
     def extract_frames(self):       
         # 打开视频文件
-        cap = cv2.VideoCapture(self.video_path)
+        cap = cv2.VideoCapture(input_video_path)
         if not cap.isOpened():
-            raise ValueError(f"无法打开视频文件: {self.video_path}")
+            raise ValueError(f"无法打开视频文件: {input_video_path}")
         
         # 获取视频信息，total_frames:视频总帧数；fps:视频帧率；frame_interval:抽帧间隔
         total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))  #
@@ -120,3 +121,4 @@ class VideoPreprocessor:
         # 步骤2: 图像预处理
         if extracted_files:
             self.process_images(extracted_files, noise_levels, exposure_factors)
+
